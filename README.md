@@ -1,74 +1,184 @@
-LaughingLeader's Baldur's Gate 3 Mod Manager
-=======
+# Менеджер модов Baldur's Gate 3 (Русская локализация)
 
-A mod manager for [Baldur's Gate 3](https://store.steampowered.com/app/1086940/Baldurs_Gate_3/).
+[![Sponsor](https://img.shields.io/badge/Sponsor-%E2%9D%A4%EF%B8%8F-red)](https://github.com/sponsors/laurenwilcox)
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-%E2%98%95-yellow)](https://ko-fi.com/LaughingLeader)
 
-**This is the only official source for the BG3 Mod Manager.** There is no "official website" beyond this repository.
+Менеджер модов для [Baldur's Gate 3](https://store.steampowered.com/app/1086940/Baldurs_Gate_3/) с полным русским интерфейсом.
 
-# Setup
+**Это русская локализация официального** [LaughingLeader/BG3ModManager](https://github.com/LaughingLeader/BG3ModManager). Оригинальный репозиторий — единственный официальный источник.
 
-1. Run the game once if you haven't already, so a profile and the mods folders get created.
-2. Make sure you have [.NET 8.0](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-desktop-8.0.15-windows-x64-installer) and [the latest C++ redistributable](https://aka.ms/vs/17/release/vc_redist.x64.exe) installed.
-3. [Grab the latest release.](https://github.com/LaughingLeader/BG3ModManager/releases/latest/download/BG3ModManager_Latest.zip)
-4. The BG3 Mod Manager is portable, so extract it to a non-protected folder (don't extract it to your Program Files).
-5. Upon running `BG3ModManager.exe`, pathways to the game data and exe should be automatically detected.  
-*If this fails, manually set the pathways in Settings -> Preferences, click 'Save', then click the 'Refresh' button so the campaign mod data is loaded.*  
-![Preferences Window](/Screenshots/PreferencesWindow_GameDataPath.png?raw=true "Making sure the Game Data Path is set.")
-6. Organize your active mods for the profile `Public`, then click the first export button (Export Load Order to Game), or click File -> Export Order to Game, to export your active load order to the game. This updates the `modsettings.lsx` file that the game reads.
- [![Exporting Load Orders](https://i.imgur.com/m9IBQrj.png)](https://i.imgur.com/m9IBQrj.png)
+## 🇷🇺 Русификация
 
-# Important Tips  
-* Make sure you don't have any subfolders in your mods folder (`%LOCALAPPDATA%\Larian Studios\Baldur's Gate 3\Mods`). This causes the game to reset your `modsettings.lsx`!
-* Ensure the `Game Data Path` is set in Settings -> Preferences to the game's data folder, where all the various .pak files are (Gustav.pak etc).
-* Make sure you have a campaign selected (i.e. "Main"). The game must have a campaign exported to the `modsettings.lsx`, or it will fail to load the main menu scene / have other issues.
-* If your `modsettings.lsx` still resets when loading into the game, this means that one or more of your mods are encountering an error, and the game is clearing the load order.
+- **249 переведённых строк:** меню, тултипы, диалоги, алерты
+- **Полная поддержка русского интерфейса:** все пункты меню, горячие клавиши, окна настроек
+- **Основа:** коммит fc35358 (18 мая 2025)
+- **Сборка:** одной командой через `setup_bg3_ru.ps1`
 
-# Current Features:
+## ⚙️ Установка
 
-* Reorganize mod load orders with a quick drag-and-drop interface. Allows reordering multiple mods at once.
-  * View details about each mod, including the description and dependencies.
-* Save your mod load orders to external json files for sharing or backing things up.
-* Export your active mod order to various text formats (i.e. a spreadsheet). These formats will include extra data, such as the mod's steam workshop url, if any.
-* Filter mods by name and properties (author, mode, etc.).
-* Export load order mods to zip files (including editor mods), for easier sharing of a playthrough's mods between friends.
-* Import load orders from save files.
-* Shortcut buttons to all the various game-related folders (mods folder, workshop folder, game directory, etc).
-* Dark and light theme support.
+### Требования
 
-## Features for Mod Authors
+- Windows 10/11
+- [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0) или Build Tools 2022
+- Git
 
-* Extract selected mods with a few clicks. Useful for mod authors, or those wanting to study mod files for learning.
-* Copy a mod's UUID or FolderName in the right click menu. Useful for if you're setting up Ext.IsModLoaded checks with the script extender, for mod support.
-* You can specify custom tags in your project's meta.lsx (the "Tags" property"). Seperate tags with a semi-colon, and the mod manager will display them.
-* A "Version Generator" tool is available under the Tools menu, for generating the correct number for major/minor/revision/build numbers.
+### Быстрый старт (рекомендуется)
 
-[![Custom Tags](https://i.imgur.com/bxkVqssl.jpg)](https://i.imgur.com/bxkVqss.png)
+Скачай `setup_bg3_ru.ps1` и запусти:
 
-# Notes
+```powershell
+powershell -ExecutionPolicy Bypass -File setup_bg3_ru.ps1
+```
 
-* Mod projects in the Data folder are highlighted in green. They can be used in the load order like regular mods, and even exported to zip files.
-* New profiles must be made in-game. You should also run the game at least once, so all of the game's user folders are created.
-* Highlight over mods to see their description and list of dependencies. Red dependencies are missing dependencies.
+Скрипт автоматически:
+1. Клонирует репозиторий
+2. Качает утилиты gplex/gppg с Amazon S3
+3. Применяет патч русификации
+4. Собирает проект через MSBuild
+5. Очищает кэш горячих клавиш
 
-# Links
+Результат: `Desktop\BG3_ru\BG3ModManager\bin\Release\BG3ModManager.exe`
 
-* [Latest Release](https://github.com/LaughingLeader/BG3ModManager/releases/latest)
-* [Changelog](https://github.com/LaughingLeader/BG3ModManager/wiki/Changelog)
-* [Leader's Lair Discord](https://discord.gg/j5gp6MD)
+### Ручная сборка
 
-# Support
+```powershell
+git clone https://github.com/ТВ_ЛОГИН/BG3ModManager-Russian.git
+cd BG3ModManager
+git checkout fc35358
+git submodule update --init --recursive
 
-If you're feeling generous, an easy way to show support is by tipping me a coffee:
+# Скачай gplex/gppg (см. оригинальный README)
+# Примени патч
+git apply russify-full-fc35358.patch
 
-[![Tip Me a Coffee](https://i.imgur.com/NkmwXff.png)](https://ko-fi.com/LaughingLeader)
+# Собери
+msbuild BG3ModManager.sln /p:Configuration=Release /p:GeneratePackageOnBuild=false /m
+```
 
-All coffee goes toward fueling future and current development efforts. Thanks!
+## 🎮 Использование
 
-# Building From Source  
-## External Libraries  
-* [lslib](https://github.com/Norbyte/lslib)
+1. **Запусти программу:**
+   ```
+   bin\Release\BG3ModManager.exe
+   ```
 
-# Credits
+2. **Первый запуск — укажи пути:**
+   - Settings → Preferences
+   - Game Executable Path → `Baldur's Gate 3\bin\x64\bg3.exe`
+   - Game Data Path → `Baldur's Gate 3\Data`
 
-* Thanks to [Norbyte](https://github.com/Norbyte) for creating [LSLib](https://github.com/Norbyte/lslib), which allows various features of the manager (getting data from paks, reading lsb files, just to name a few).
-* [Baldur's Gate 3](https://store.steampowered.com/app/1086940/Baldurs_Gate_3/), a wonderful game from [Larian Studios](http://larian.com/)
+3. **Организуй моды:**
+   - Перетаскивай моды в список "Активные моды"
+   - Порядок важен! Зависимости должны быть выше зависимых
+   - Проверяй красные треугольники — это значит не хватает чего-то
+
+4. **Экспортируй в игру:**
+   - File → Export Order to Game
+   - Или нажми первую зелёную кнопку в тулбаре
+
+5. **Запусти игру и наслаждайся!**
+
+## 📋 Основные функции
+
+- 🎚️ **Перестановка модов** — drag-and-drop интерфейс, множественный выбор
+- 📝 **Сохранение порядков** — экспорт в JSON для обмена с друзьями
+- 📊 **Экспорт в текст** — красивые таблицы для документов и скриншотов
+- 🔎 **Фильтрация** — поиск по названию, автору, типу мода
+- 📦 **Импорт/экспорт архивов** — делись полным сетапом модов
+- 🎯 **Импорт из сохранений** — возьми порядок из завершённого сохранения
+- 🔗 **Быстрые ссылки** — кнопки на все папки: моды, мастерская, логи, настройки
+- 🌙 **Светлая и тёмная тема** — выбирай по вкусу
+
+## ⚙️ Функции для авторов модов
+
+- 🗜️ **Распаковка модов** — извлеки .pak одной кнопкой
+- 📌 **Копирование UUID/FolderName** — для скрипт-экстендера
+- 🏷️ **Пользовательские теги** — задавай теги в `meta.lsx` — они отобразятся
+- 📦 **Генератор версий** — инструмент для правильной нумерации версий
+
+## 📁 Структура проекта
+
+```
+localization/
+  ├── russify-full-fc35358.patch      # Суммарный патч (XAML + C# + меню)
+  ├── setup_bg3_ru.ps1                # One-click сборка с нуля
+  ├── translations.json               # Память переводов
+  ├── extract_strings.py              # Извлечение строк из исходников
+  ├── build_translations.py           # Валидация и сборка translations.json
+  ├── apply_translations.py           # Применение переводов к файлам
+  └── translate_appkeys.py            # Перевод меню (AppKeys.cs)
+
+src/
+  ├── GUI/                            # WPF интерфейс (переведён)
+  ├── Core/                           # Ядро (LSLib wrapper)
+  └── Toolbox/                        # Утилиты
+
+External/
+  ├── lslib/                          # LSLib (для чтения pak-файлов)
+  └── CrossSpeak/                     # Озвучка текста
+```
+
+## 🔄 Обновления апстрима
+
+Когда автор выпустит новую версию:
+
+```powershell
+cd BG3ModManager
+git fetch upstream
+git rebase upstream/master ru
+
+# Если конфликты — редактируешь вручную, потом:
+git rebase --continue
+
+# Пересоздаёшь переводы (если чего-то добавилось):
+python localization/extract_strings.py .
+python localization/build_translations.py
+python localization/translate_appkeys.py .
+python localization/apply_translations.py .
+
+# Собираешь
+msbuild BG3ModManager.sln /p:Configuration=Release /p:GeneratePackageOnBuild=false /m
+
+# Пушишь
+git push origin ru
+```
+
+## ⚠️ Важно
+
+- **Не кладь моды в подпапки** `%LOCALAPPDATA%\Larian Studios\Baldur's Gate 3\Mods` — это сбросит твой порядок
+- **Убедись, что Game Data Path указан правильно** — куда лежат Gustav.pak и остальные файлы
+- **Выбери кампанию** — игра должна иметь экспортированный порядок для Main (Public)
+- **Если modsettings.lsx сбрасывается** — один из твоих модов крашится; см. логи
+
+## 💝 Поддержка проекта
+
+Если тебе нравится менеджер и ты хочешь помочь развитию русской локализации:
+
+- ⭐ **[GitHub Sponsors](https://github.com/sponsors/laurenwilcox)** — регулярная поддержка на GitHub
+- ☕ **[Ko-fi (Buy Me a Coffee)](https://ko-fi.com/LaughingLeader)** — отправить кофе разработчику оригинального проекта
+- 🐙 **GitHub Star** — звезда репо помогает видимости
+
+**Спасибо за поддержку! 🙏**
+
+## 🔗 Ссылки
+
+- [Оригинальный репозиторий](https://github.com/LaughingLeader/BG3ModManager)
+- [Список изменений](https://github.com/LaughingLeader/BG3ModManager/wiki/Changelog)
+- [Дискорд сообщества](https://discord.gg/j5gp6MD)
+- [Поддержать разработчика (Ko-fi)](https://ko-fi.com/LaughingLeader)
+
+## 📝 Благодарности
+
+- **LaughingLeader** — менеджер модов и его активная поддержка
+- **Norbyte** — [LSLib](https://github.com/Norbyte/lslib) для работы с pak-файлами
+- **Larian Studios** — Baldur's Gate 3
+
+## 📄 Лицензия
+
+MIT (как оригинальный проект). Смотри файл [LICENSE](LICENSE).
+
+---
+
+**Русская локализация:** основана на коммите fc35358, полностью совместима с оригиналом. Для обновления до свежей версии LaughingLeader используй команды выше.
+
+Приятной игры! 🐉⚔️
