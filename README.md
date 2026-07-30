@@ -1,7 +1,7 @@
-<img width="384" height="384" alt="image" src="https://github.com/user-attachments/assets/169042c3-6ad8-4f0a-9ecd-5553e2ebb677" /># Менеджер модов Baldur's Gate 3 (Русская локализация)
+# Менеджер модов Baldur's Gate 3 (Русская локализация)
 
 [![Sponsor](https://img.shields.io/badge/Sponsor-%E2%9D%A4%EF%B8%8F-red)](https://github.com/sponsors/laurenwilcox)
-[![Buy Me a Coffee][(https://img.shields.io/badge/Buy%20Me%20a%20Coffee-%E2%98%95-yellow)]([https://ko-fi.com/laurenwilcox](https://ko-fi.com/laurenwilcox))](https://ko-fi.com/laurenwilcox)
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-%E2%98%95-yellow)](https://ko-fi.com/laurenwilcox)
 
 Менеджер модов для [Baldur's Gate 3](https://store.steampowered.com/app/1086940/Baldurs_Gate_3/) с полным русским интерфейсом.
 
